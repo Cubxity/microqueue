@@ -17,6 +17,11 @@ dependencies {
 }
 
 tasks {
+    jar {
+        manifest {
+            attributes("Main-Class" to "dev.cubxity.server.MicroQueue")
+        }
+    }
     shadowJar {
         archiveClassifier.set("")
     }
