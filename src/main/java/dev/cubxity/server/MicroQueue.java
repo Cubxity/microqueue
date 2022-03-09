@@ -98,7 +98,7 @@ public final class MicroQueue {
         });
 
         // Velocity support
-        String velocitySecret = System.getProperty("VELOCITY_SECRET");
+        String velocitySecret = System.getenv("VELOCITY_SECRET");
         if (velocitySecret != null) {
             logger.info("Velocity supported enabled.");
             VelocityProxy.enable(velocitySecret);
