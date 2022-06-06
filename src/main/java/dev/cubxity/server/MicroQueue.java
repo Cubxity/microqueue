@@ -41,7 +41,7 @@ public final class MicroQueue {
         instanceContainer.setTime(18_000);
         instanceContainer.setTimeRate(0);
         instanceContainer.setTimeUpdate(null);
-        instanceContainer.setChunkGenerator(new VoidChunkGenerator());
+        instanceContainer.setGenerator(new VoidGenerator());
         instanceContainer.enableAutoChunkLoad(true);
 
         /* Y=62 */
@@ -80,7 +80,9 @@ public final class MicroQueue {
             player.setGameMode(GameMode.ADVENTURE);
             player.setEnableRespawnScreen(false);
 
-            player.setNoGravity(true);
+            if (config.isDisableGravity()) {
+                player.setNoGravity(true);
+            }
 
             player.addEffect(new Potion(PotionEffect.BLINDNESS, Byte.MAX_VALUE, Integer.MAX_VALUE));
             player.addEffect(new Potion(PotionEffect.INVISIBILITY, Byte.MAX_VALUE, Integer.MAX_VALUE));
@@ -100,7 +102,7 @@ public final class MicroQueue {
         // Velocity support
         String velocitySecret = System.getenv("VELOCITY_SECRET");
         if (velocitySecret != null) {
-            logger.info("Velocity supported enabled.");
+            logger.info("Velocity support enabled.");
             VelocityProxy.enable(velocitySecret);
         }
 

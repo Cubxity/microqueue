@@ -18,6 +18,7 @@ public final class MicroQueueConfig {
     private int compressionThreshold = 0; // 0: Disable
     private int viewDistance = 2;
     private int maxPlayers = 0; // 0: Disable
+    private boolean disableGravity = false;
 
     public void saveDefaults() {
         try {
@@ -51,6 +52,7 @@ public final class MicroQueueConfig {
             compressionThreshold = Math.max(getInt("compression-threshold", 0), 0);
             viewDistance = Math.max(getInt("view-distance", 2), 2);
             maxPlayers = Math.max(getInt("max-players", 0), 0);
+            disableGravity = Boolean.parseBoolean(properties.getProperty("disable-gravity", "false"));
         } catch (Exception ex) {
             logger.error("Unable to parse configuration", ex);
         }
@@ -74,6 +76,10 @@ public final class MicroQueueConfig {
 
     public int getMaxPlayers() {
         return maxPlayers;
+    }
+
+    public boolean isDisableGravity() {
+        return disableGravity;
     }
 
     private int getInt(String key, int def) {
